@@ -108,5 +108,9 @@ function endTimer() {
 function initTimerFunc() {
     startBtn = document.getElementById('start-btn');
     startBtn.addEventListener("click", startTimer);
+    stopBtn = document.getElementById('stop-btn');
+    stopBtn.addEventListener("click", endTimer);
 }
+
+
 document.addEventListener('DOMContentLoaded', initTimerFunc);

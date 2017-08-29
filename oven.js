@@ -25,6 +25,10 @@ function reset_all(){
   timerRunning = false;
   ovenAlreadyRan = false;
   currentTime = -1;
+  oven = document.getElementById('oven');
+  oven.style.backgroundImage = "";
+  document.getElementById('timer').style.color = 'blue';
+  document.getElementById('alert').innerHTML = ''
 }
 
 function create_restart(){

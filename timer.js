@@ -89,7 +89,7 @@ function startTimer() {
     ovenNotice.innerHTML = '';
     if (!timerRunning) {
       addTime();
-      timer = setInterval(function(){ addTime() }, 1000); // 1000 milliseconds
+      timer = setInterval(function(){ addTime() }, 300); // 1000 milliseconds
       timerRunning = true;
       ovenAlreadyRan = true;
     }
@@ -99,17 +99,68 @@ function startTimer() {
   }
 }
 
+function createBurntCookieImg(){
+  cookieImg = document.createElement('img');
+  cookieImg.setAttribute('src', 'img/burnt.jpg');
+  size = '30px';
+  cookieImg.style.width = size;
+  cookieImg.style.height = size;
+  cookieImg.style.margin = '3px';
+  return cookieImg;
+}
+
+function createRedyCookieImg(){
+  cookieImg = document.createElement('img');
+  cookieImg.setAttribute('src', 'img/cookie.jpg');
+  size = '30px';
+  cookieImg.style.width = size;
+  cookieImg.style.height = size;
+  cookieImg.style.margin = '3px';
+  return cookieImg;
+}
+
+function addBrutCookie() {
+  for (var i = 0; i < cookieCount; i++){
+    cookieImg = createBurntCookieImg();
+    div = document.getElementById('tray');
+    div.appendChild(cookieImg);
+  }
+}
+
+function addRedyCookie() {
+  for (var i = 0; i < cookieCount; i++){
+    cookieImg = createRedyCookieImg();
+    div = document.getElementById('tray');
+    div.appendChild(cookieImg);
+  }
+}
+
+function deleteDoughyCookie() {
+  var img = document.getElementsByClassName("doughy-cookie");
+  var div = document.getElementById("tray")
+  for (var i = 0; i < cookieCount; i++){
+    div.removeChild(img[0]);
+  }
+}
+
 function endTimer() {
   clearInterval(timer);
   timerRunning = false;
+  if (currentTime > 15){
+    deleteDoughyCookie()
+    addBrutCookie()
+  } else if (currentTime >= 12 && currentTime <= 15) {
+    deleteDoughyCookie()
+    addRedyCookie()
+  }
 }
 
 // move to oven/script.js
 function initTimerFunc() {
-    startBtn = document.getElementById('start-btn');
-    startBtn.addEventListener("click", startTimer);
-    stopBtn = document.getElementById('stop-btn');
-    stopBtn.addEventListener("click", endTimer);
+  startBtn = document.getElementById('start-btn');
+  startBtn.addEventListener("click", startTimer);
+  stopBtn = document.getElementById('stop-btn');
+  stopBtn.addEventListener("click", endTimer);
 }
 
 

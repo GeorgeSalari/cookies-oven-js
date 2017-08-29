@@ -8,6 +8,7 @@ function createCookieImg(){
   cookieImg.style.width = size;
   cookieImg.style.height = size;
   cookieImg.style.margin = '3px';
+  cookieImg.className = "doughy-cookie"
   cookieCount += 1;
   return cookieImg;
 }
